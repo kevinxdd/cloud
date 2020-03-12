@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>	
+<head>
+<title>Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<meta name="keywords" content="Flat Dark Web Login Form Responsive Templates, Iphone Widget Template, Smartphone login forms,Login form, Widget Template, Responsive Templates, a Ipad 404 Templates, Flat Responsive Templates" />
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<!--webfonts-->
+<link href='http://fonts.useso.com/css?family=PT+Sans:400,700,400italic,700italic|Oswald:400,300,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.useso.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+<!--//webfonts-->
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<script>$(document).ready(function(c) {
+	$('.close').on('click', function(c){
+		$('.login-form').fadeOut('slow', function(c){
+	  		$('.login-form').remove();
+		});
+	});	  
+});
+
+
+function login() {
+
+    var arr=$("#dataForm").serializeArray();
+    var serObj=serializeToObject(arr);//json对象
+    var s = JSON.stringify(serObj);
+    $.ajax({
+        //几个参数需要注意一下
+        type: "POST",//方法类型
+        dataType: "json",//预期服务器返回的数据类型
+        url: "/sum" ,//url
+        contentType:"application/json",
+        data: s,
+        success: function (result) {
+            console.log(result);//打印服务端返回的数据(调试用)
+                alert("result");
+            ;
+        },
+        error : function(result) {
+           if(result.status=='200'){
+           	alert(result.responseText);
+		   }
+        }
+    });
+}
+
+
+
+function serializeToObject(jsonArray){
+    var o = {};
+    $.each(jsonArray, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+}
+
+
+
+</script>
+ <!--SIGN UP-->
+ <h1>笨蛋的日常计算</h1>
+<div class="login-form">
+	<div class="close"> </div>
+		<div class="head-info">
+			<label class="lbl-1"> </label>
+			<label class="lbl-2"> </label>
+            <label class="lbl-3"> </label>
+		</div>
+			<div class="clear"> </div>
+	<div class="avtar">
+
+	</div>
+		<!--	<form>
+					<input type="text" class="text" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" >
+						<div class="key">
+					<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+						</div>
+			</form>-->
+
+			<form id="dataForm" action="#" th:action="@{/sum}" th:object="${greeting}" method="post">
+				<p><font color="#f0f8ff">计算开始时间:</font><input type="text"  class="text"  placeholder="填写格式 ：2020/01/14 15:28" th:field="*{time}" /></p>
+				<p><font color="#f0f8ff">小时数:&emsp;</font><input type="text" th:field="*{hour}" /></p>
+				<p><font color="#f0f8ff">偏差数:&emsp;</font><input type="text" th:field="*{num}" /></p>
+
+				<p id=""></p>
+
+			</form>
+    <div class="signin">
+        <input type="submit" value="开始计算" onclick="login()">
+    </div>
+
+</div>
+ <div class="copy-rights">
+					<p>笨蛋的日常计算</p>
+			</div>
+
+</body>
+</html>
