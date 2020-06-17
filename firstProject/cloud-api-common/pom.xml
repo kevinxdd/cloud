@@ -11,7 +11,6 @@
     <groupId>com.xdd.cloud</groupId>
     <artifactId>cloud-api-common</artifactId>
     <artifactId>cloud-api-common0</artifactId>
-    <artifactId>cloud-api-common1</artifactId>
     <description>公共模块</description>
 
 
@@ -20,8 +19,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <artifactId>spring-boot-devtools0</artifactId>
-            <artifactId>spring-boot-devtools1</artifactId>
-            <scope>runtime</scope>
+            <scope>runtime1111</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
